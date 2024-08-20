@@ -12,6 +12,7 @@ class Program
         if(!dbConnection.ConnectToDatabase())
         {
             Console.WriteLine("Database connection failed, exiting program.");
+            Console.ReadKey();
             Environment.Exit(0);
             return;
         }

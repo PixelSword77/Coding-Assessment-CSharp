@@ -11,29 +11,29 @@ namespace Coding_Assessment_CSharp.scripts.objects
 {
     internal class DatabaseConnection
     {
-        public DatabaseConnection(string server, string user, string password, string database)
+        public DatabaseConnection(string ServerName, string UserID, string Password, string DatabaseName)
         {
-            ServerName = server;
-            UserID = user;
-            Password = password;
-            DatabaseName = database;
+            server = ServerName;
+            user = UserID;
+            password = Password;
+            database = DatabaseName;
         }
 
-        string ServerName = "";
-        string UserID = "";
-        string Password = "";
-        string DatabaseName = "";
+        string server = "";
+        string user = "";
+        string password = "";
+        string database = "";
         MySqlConnection connection;
 
         public bool ConnectToDatabase()
         {
             bool connected = false;
 
-            string connectionString = "Server=" + ServerName + ";User ID=" + UserID + ";Password=" + Password + ";Database=" + DatabaseName;
+            string connectionString = "Server=" + server + ";User ID=" + user + ";Password=" + password + ";Database=" + database;
 
             MySqlConnection newConnection = new MySqlConnection(connectionString);
             newConnection.Open();
-            Console.WriteLine("Attempting new connection to database: " + DatabaseName);
+            Console.WriteLine("Attempting new connection to database: " + database);
 
             int dotCount = 0;
             int connectionTime = 0;
