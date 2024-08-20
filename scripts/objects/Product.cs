@@ -15,8 +15,8 @@ namespace Coding_Assessment_CSharp.scripts.objects
             price = Price;
         }
 
-        string name = "";
-        string code = "";
-        float price = 0.00f;
+        public string name = "";
+        public string code = "";
+        public float price = 0.00f;
     }
 }

@@ -76,11 +76,12 @@ namespace Coding_Assessment_CSharp.scripts.objects
             MySqlCommand command = new MySqlCommand(query, connection);
             MySqlDataReader reader = command.ExecuteReader();
 
-            List<string> columns = new List<string>();
             while (reader.Read())
             {
-                for(int i = 0; i < reader.FieldCount; i++)
+                List<string> columns = new List<string>();
+                for (int i = 0; i < reader.FieldCount; i++)
                 {
+                    Console.WriteLine(reader.GetValue(i).ToString());
                     columns.Add(reader.GetValue(i).ToString());
                 }
                 lines.Add(columns);
