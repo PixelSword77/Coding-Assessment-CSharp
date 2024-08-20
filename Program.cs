@@ -18,7 +18,11 @@ class Program
         }
 
         // Retrieve the list of products and store them in an object
-
+        List<List<string>> tableData = dbConnection.GetTableData("select * from products_list");
+        foreach (List<string> table in tableData)
+        {
+            Console.WriteLine(table[0] + " - " + table[1] + " - " + table[2]);
+        }
 
         // Print a table to the console showing the available products, codes, and prices
 

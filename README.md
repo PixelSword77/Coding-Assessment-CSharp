@@ -1,7 +1,7 @@
 # Coding Assessment CSharp
  
 ## Background
-This assessment was created using a Windows 11 virtual machine on my Linux desktop. A MySQL database, called "products", is hosted locally and contains a table called "productsList". Here, product codes, names, and prices are stored. The program was developed using Visual Studio as a console app and written in C#.
+This assessment was created using a Windows 11 virtual machine on my Linux desktop. A MySQL database, called "products", is hosted locally and contains a table called "products_list". Here, product codes, names, and prices are stored. The program was developed using Visual Studio as a console app and written in C#.
 
 ## How it works
 

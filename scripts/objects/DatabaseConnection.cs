@@ -65,7 +65,28 @@ namespace Coding_Assessment_CSharp.scripts.objects
                     break;
             }
 
+            connection = newConnection;
             return connected;
+        }
+
+        public List<List<string>> GetTableData(string query)
+        {
+            List<List<string>> lines = new List<List<string>>();
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            List<string> columns = new List<string>();
+            while (reader.Read())
+            {
+                for(int i = 0; i < reader.FieldCount; i++)
+                {
+                    columns.Add(reader.GetValue(i).ToString());
+                }
+                lines.Add(columns);
+            }
+
+            return lines;
         }
     }
 }
