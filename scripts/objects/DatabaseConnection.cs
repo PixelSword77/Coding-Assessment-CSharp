@@ -11,6 +11,13 @@ namespace Coding_Assessment_CSharp.scripts.objects
 {
     internal class DatabaseConnection
     {
+        /// <summary>
+        /// An object used to create and manage the connection of the client to a connected database. The ServerName, UserID, Password, and DatabaseName must be specified to make connection.
+        /// </summary>
+        /// <param name="ServerName"></param>
+        /// <param name="UserID"></param>
+        /// <param name="Password"></param>
+        /// <param name="DatabaseName"></param>
         public DatabaseConnection(string ServerName, string UserID, string Password, string DatabaseName)
         {
             server = ServerName;
@@ -25,16 +32,23 @@ namespace Coding_Assessment_CSharp.scripts.objects
         string database = "";
         MySqlConnection connection;
 
+        /// <summary>
+        /// Attempts to connect a connection with the connection info used when creating this connection. Will return true if the connection is successful, and false otherwise, and provides console output based on progress and results.
+        /// </summary>
+        /// <returns></returns>
         public bool ConnectToDatabase()
         {
             bool connected = false;
 
+            // Create the string required to make connection with MySqlConnection using the established info
             string connectionString = "Server=" + server + ";User ID=" + user + ";Password=" + password + ";Database=" + database;
 
+            // Begin attempting to connect to the database
             MySqlConnection newConnection = new MySqlConnection(connectionString);
             newConnection.Open();
             Console.WriteLine("Attempting new connection to database: " + database);
 
+            // If the connection takes time to connect, a message displays letting the user know that the connection is still attempting before timing out
             int dotCount = 0;
             int connectionTime = 0;
             while (newConnection.State == ConnectionState.Connecting)
@@ -51,6 +65,7 @@ namespace Coding_Assessment_CSharp.scripts.objects
                     break;
             }
 
+            // Outputs the result of the connection, and only marks the connection as successful when the connection opens
             switch (newConnection.State)
             {
                 case ConnectionState.Open:
@@ -69,6 +84,11 @@ namespace Coding_Assessment_CSharp.scripts.objects
             return connected;
         }
 
+        /// <summary>
+        /// Uses the provided query as an SQL query on the connected database, and output the data in a format valid to create a Table object.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public List<List<string>> GetTableData(string query)
         {
             List<List<string>> lines = new List<List<string>>();

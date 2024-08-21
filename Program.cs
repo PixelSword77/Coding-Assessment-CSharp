@@ -1,5 +1,8 @@
 ﻿using Coding_Assessment_CSharp.scripts.objects;
 
+/// <summary>
+/// This program runs in the console, first outputting debug lines during initialization to confirm
+/// </summary>
 class Program
 {
     static void Main(string[] args)
@@ -7,7 +10,7 @@ class Program
         Console.WriteLine("#############################");
         Console.WriteLine("Initializing...");
 
-        // Initialize the connection to the products database, exit if the connection fails
+        // Initialize the connection to the products database and stores it as an object to be used in the next section, exits if the connection fails
         DatabaseConnection dbConnection = new DatabaseConnection("localhost", "username", "password", "products");
         if(!dbConnection.ConnectToDatabase())
         {
@@ -34,7 +37,7 @@ class Program
             products.Add(newProduct);
         }
 
-        // End initialization and clear console
+        // End initialization and clear console. Waits for user input
         Console.WriteLine("Initialization finished successfully, press any key to launch.");
         Console.WriteLine("#############################");
         Console.ReadKey();
@@ -47,23 +50,23 @@ class Program
         while (true)
         {
             // Print a table to the console showing the available products, codes, and prices
-            Table productTable = new Table();
-            Console.WriteLine(productTable.CreateTableStringFromProducts("# Products", products, 3));
+            Table productTable = new Table(3);
+            Console.WriteLine(productTable.CreateTableStringFromProducts("# Products", products));
             Console.WriteLine("");
 
             // If we have items in our cart, print a table showing its contents
             if (cart.GetSubtotal() > 0)
             {
-                Table cartTable = new Table();
-                Console.WriteLine(cartTable.CreateTableString("# Cart", cart.GetCartContentsInTableFormat(), 3));
+                Table cartTable = new Table(3);
+                Console.WriteLine(cartTable.CreateTableString("# Cart", cart.GetCartContentsInTableFormat()));
                 Console.WriteLine("");
             }
 
             // If we have items in our cart, show what our current subtotal and final total is, including applied discounts and shipping
             if (cart.GetSubtotal() > 0)
             {
-                Table priceTable = new Table();
-                Console.WriteLine(priceTable.CreateTableString("# Prices", cart.GetCartPriceInTableFormat(), 3));
+                Table priceTable = new Table(3);
+                Console.WriteLine(priceTable.CreateTableString("# Prices", cart.GetCartPriceInTableFormat()));
                 Console.WriteLine("");
             }
 
@@ -121,6 +124,8 @@ class Program
                 cart.AddProduct(selectedProduct, quantity);
             }
 
+            // Waits for the user to input so that they can see the results of their input before allowing them to input again
+            Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
             Console.Clear();
         }
