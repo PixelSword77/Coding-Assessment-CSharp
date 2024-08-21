@@ -175,7 +175,7 @@ namespace Coding_Assessment_CSharp.scripts.objects
             foreach(KeyValuePair<string, float> discount in discounts)
             {
                 discountEntry.Add(discount.Key);
-                discountEntry.Add(discount.Value.ToString("0.00"));
+                discountEntry.Add((-discount.Value).ToString("0.00"));
                 contents.Add(discountEntry);
             }
 

@@ -22,12 +22,7 @@ class Program
 
         // Retrieve the list of products in the products_list table
         Console.WriteLine("Fetching list of products...");
-
         List<List<string>> tableData = dbConnection.GetTableData("select * from products_list");
-        foreach (List<string> table in tableData)
-        {
-            Console.WriteLine(table[0] + " - " + table[1] + " - " + table[2]);
-        }
 
         // Create a list of all loaded products from the loaded table data
         List<Product> products = new List<Product>();
@@ -52,7 +47,7 @@ class Program
         drawnTables.Add("Cart", new Table());
         drawnTables.Add("Prices", new Table(3));
 
-        // Process the user's shopping
+        // The main loop to process the user's shopping
         while (true)
         {
             // Print a table to the console showing the available products, codes, and prices

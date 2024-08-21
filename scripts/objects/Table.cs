@@ -63,10 +63,10 @@ namespace Coding_Assessment_CSharp.scripts.objects
 
             // Add each row of values to the table, adding the proper amount of spacing calculated prior and including any extra padded added when intitializing the table
             output += header + "\n";
-            output += "---------------------------------------------------------\n";
+            output += "#--------------------------------------------------------\n";
             for (int i = 0; i < values.Count; i++)
             {
-                output += "#";
+                output += "# ";
                 for (int t = 0; t < columns; t++)
                 {
                     output += values[i][t] + new string(' ', columnLengths[t] - values[i][t].Length + padding) + "|";
