@@ -49,7 +49,7 @@ namespace Coding_Assessment_CSharp.scripts.objects
         /// Checks the contents of the carts against predetermined discounts, such as BOGO50% Red Flowers, and accumulates the discounts in a dictionary containiner the discount name and the total amount saved from the discount
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, float> GetValidDiscounts()
+        private Dictionary<string, float> GetValidDiscounts()
         {
             Dictionary<string, float> discounts = new Dictionary<string, float>();
 
@@ -78,7 +78,7 @@ namespace Coding_Assessment_CSharp.scripts.objects
         /// Returns the shipping fee relative to the total price of the cart, which includes all valid discounts.
         /// </summary>
         /// <returns></returns>
-        public float GetShippingFee()
+        private float GetShippingFee()
         {
             // Initializes the subtotal instead of total, as the total relies on the shipping fee and will infinitely loop
             float shipping = 0.00f;
@@ -119,7 +119,7 @@ namespace Coding_Assessment_CSharp.scripts.objects
         /// Calculates the total price of the cart, including any shipping fees and all discounts.
         /// </summary>
         /// <returns></returns>
-        public float GetTotal()
+        private float GetTotal()
         {
             float total = GetSubtotal();
 

@@ -8,37 +8,22 @@ namespace Coding_Assessment_CSharp.scripts.objects
 {
     internal class Table
     {
-        int padding = 0;
+        int padding = 3;
 
         /// <summary>
         /// A visual representation of data, specifically in the format of List<List<string>>.
         /// </summary>
-        public Table(int TablePadding)
+        public Table()
         {
-            padding = TablePadding;
+            
         }
 
         /// <summary>
-        /// Returns the same value as CreateTableString, but uses a dataset from a list of Products for simplicity.
+        /// A visual representation of data, specifically in the format of List<List<string>>. Sets the padding of the columns.
         /// </summary>
-        /// <param name="header"></param>
-        /// <param name="products"></param>
-        /// <returns></returns>
-        public string CreateTableStringFromProducts(string header, List<Product> products)
+        public Table(int TablePadding)
         {
-            List<List<string>> productsList = new List<List<string>>();
-
-            // Add each products in our product list to the new dataset to be converted into a printable table
-            foreach (Product product in products)
-            {
-                List<string> newProductListing = new List<string>();
-                newProductListing.Add(product.name);
-                newProductListing.Add(product.code);
-                newProductListing.Add(product.price.ToString());
-                productsList.Add(newProductListing);
-            }
-
-            return CreateTableString(header, productsList);
+            padding = TablePadding;
         }
 
         /// <summary>

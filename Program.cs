@@ -10,7 +10,7 @@ class Program
         Console.WriteLine("#############################");
         Console.WriteLine("Initializing...");
 
-        // Initialize the connection to the products database and stores it as an object to be used in the next section, exits if the connection fails
+        // Initialize the connection to the products database and stores it as a reusable object using abstraction principles to hide the MySqlConnection results and data , which is to be used in the next section, exits if the connection fails
         DatabaseConnection dbConnection = new DatabaseConnection("localhost", "username", "password", "products");
         if(!dbConnection.ConnectToDatabase())
         {
@@ -46,27 +46,30 @@ class Program
         //Create a new cart to be used during the shopping process
         Cart cart = new Cart();
 
+        // Demonstrate one aspect of inheritance and polymorphism by saving the tables in a dictionary containing any table type, which includes ProductTables
+        Dictionary<string, Table> drawnTables = new Dictionary<string, Table>();
+        drawnTables.Add("Products", new ProductTable());
+        drawnTables.Add("Cart", new Table());
+        drawnTables.Add("Prices", new Table(3));
+
         // Process the user's shopping
         while (true)
         {
             // Print a table to the console showing the available products, codes, and prices
-            Table productTable = new Table(3);
-            Console.WriteLine(productTable.CreateTableStringFromProducts("# Products", products));
+            Console.WriteLine(((ProductTable)drawnTables["Products"]).CreateTableStringFromProducts("# Products", products));
             Console.WriteLine("");
 
             // If we have items in our cart, print a table showing its contents
             if (cart.GetSubtotal() > 0)
             {
-                Table cartTable = new Table(3);
-                Console.WriteLine(cartTable.CreateTableString("# Cart", cart.GetCartContentsInTableFormat()));
+                Console.WriteLine(drawnTables["Cart"].CreateTableString("# Cart", cart.GetCartContentsInTableFormat()));
                 Console.WriteLine("");
             }
 
             // If we have items in our cart, show what our current subtotal and final total is, including applied discounts and shipping
             if (cart.GetSubtotal() > 0)
             {
-                Table priceTable = new Table(3);
-                Console.WriteLine(priceTable.CreateTableString("# Prices", cart.GetCartPriceInTableFormat()));
+                Console.WriteLine(drawnTables["Prices"].CreateTableString("# Prices", cart.GetCartPriceInTableFormat()));
                 Console.WriteLine("");
             }
 
