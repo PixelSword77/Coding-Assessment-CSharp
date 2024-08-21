@@ -28,6 +28,12 @@ namespace Coding_Assessment_CSharp.scripts.objects
         {
             string output = "";
 
+            if(values.Count == 0)
+            {
+                Console.WriteLine("ERR: Tried to create table '" + header + "' but the input values list is empty");
+                return "";
+            }
+
             int columns = values[0].Count();
 
             List<int> columnLengths = new List<int>();
@@ -44,7 +50,7 @@ namespace Coding_Assessment_CSharp.scripts.objects
             }
 
             output += header + "\n";
-            output += "------------------------------------------------------------------\n";
+            output += "---------------------------------------------------------\n";
             for (int i = 0; i < values.Count; i++)
             {
                 output += "#";

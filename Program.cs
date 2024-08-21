@@ -40,25 +40,91 @@ class Program
         Console.ReadKey();
         Console.Clear();
 
-        // Print a table to the console showing the available products, codes, and prices
-        Table productTable = new Table();
-        Console.WriteLine(productTable.CreateTableStringFromProducts("# Products", products, 3));
-        Console.WriteLine("");
+        //Create a new cart to be used during the shopping process
+        Cart cart = new Cart();
 
-        // Get user's input for the product code and quantity to add to cart
+        // Process the user's shopping
+        while (true)
+        {
+            // Print a table to the console showing the available products, codes, and prices
+            Table productTable = new Table();
+            Console.WriteLine(productTable.CreateTableStringFromProducts("# Products", products, 3));
+            Console.WriteLine("");
 
-        // Add the user's input to a cart
+            // If we have items in our cart, print a table showing its contents
+            if (cart.GetSubtotal() > 0)
+            {
+                Table cartTable = new Table();
+                Console.WriteLine(productTable.CreateTableString("# Cart", cart.GetCartContentsInTableFormat(), 3));
+                Console.WriteLine("");
+            }
 
-        // Display the cart on the screen
+            // Get user's input for the product code
+            Console.WriteLine("Enter the product code you'd like to add to your cart, or enter 'CLEAR' to empty your cart:");
+            string productCode = Console.ReadLine();
+            Product selectedProduct = null;
 
-        // Calculate the amount saved from discounts (buy on red flower, get one half off)
+            //Clear the cart if "CLEAR" is entered
+            if (productCode == "CLEAR")
+            {
+                cart.ClearCart();
+                Console.ReadKey();
+                Console.Clear();
+                continue;
+            }
 
-        // Calculate shipping cost
+            // Validate the user input a valid product code
+            bool inputValidated = false;
+            foreach (Product product in products)
+            {
+                if (product.code == productCode)
+                {
+                    inputValidated = true;
+                    selectedProduct = product;
+                }
+            }
 
-        // Calculate total
+            if(!inputValidated)
+            {
+                Console.WriteLine("Invalid product code, press any key to try again.");
+                Console.ReadKey();
+                Console.Clear();
+                continue;
+            }
 
-        // Display total
+            // Get the user's input for the quantity of the prior input product code
+            Console.WriteLine("Enter the quantity you'd like to add to your cart:");
+            int quantity = 0;
+            inputValidated = false;
 
-        Console.ReadKey();
+            //Validate the user entered a valid integer
+            inputValidated = int.TryParse(Console.ReadLine(), out quantity);
+            if(!inputValidated)
+            {
+                Console.WriteLine("Invalid quantity, press any key to try again.");
+                Console.ReadKey();
+                Console.Clear();
+                continue;
+            }
+
+            // Add the user's input to a cart
+            if(selectedProduct != null)
+            {
+                cart.AddProduct(selectedProduct, quantity);
+            }
+
+            // Display the cart on the screen
+
+            // Calculate the amount saved from discounts (buy on red flower, get one half off)
+
+            // Calculate shipping cost
+
+            // Calculate total
+
+            // Display total
+
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
 }
