@@ -41,8 +41,8 @@ class Program
         Console.Clear();
 
         // Print a table to the console showing the available products, codes, and prices
-        ProductTable productTable = new ProductTable();
-        Console.WriteLine(productTable.CreateProductsTable(products));
+        Table productTable = new Table();
+        Console.WriteLine(productTable.CreateTableStringFromProducts("# Products", products, 3));
         Console.WriteLine("");
 
         // Get user's input for the product code and quantity to add to cart
