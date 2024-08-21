@@ -1,7 +1,7 @@
 # Coding Assessment CSharp
  
 ## Background
-This assessment was created using a Windows 11 virtual machine on my Linux desktop. A MySQL database, called "products", is hosted locally and contains a table called "products_list". Here, product codes, names, and prices are stored. The program was developed using Visual Studio as a console app and written in C#.
+This assessment was created using a Windows 11 virtual machine on my Linux desktop. A MySQL database, called "products", is hosted locally and contains a table called "products_list". Here, product codes, names, and prices are stored. The program was developed using Visual Studio to output to the console and was written in C#.
 
 As this is my second attempt and I'm using a more familiar language, I have adhered as closely as possible to OOP principles, utilizing objects, inheritance, abstraction, methods, polymorphism, and encapsulation. As these terms and definitions are a bit fluid depending on who you ask, I've tried to include as many examples in my code of each as possible, and I point out notable examples in the comments of the code. Things such as classes handling their own internal methods and operations that aren't public or visible to the main loop help to show encapsulation and abstraction, while including different types of tables help to show inheritance and polymorphism, but the scope of the project limits what can be included without over-engineering the program.
 
