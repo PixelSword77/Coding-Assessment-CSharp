@@ -55,7 +55,15 @@ class Program
             if (cart.GetSubtotal() > 0)
             {
                 Table cartTable = new Table();
-                Console.WriteLine(productTable.CreateTableString("# Cart", cart.GetCartContentsInTableFormat(), 3));
+                Console.WriteLine(cartTable.CreateTableString("# Cart", cart.GetCartContentsInTableFormat(), 3));
+                Console.WriteLine("");
+            }
+
+            // If we have items in our cart, show what our current subtotal and final total is, including applied discounts and shipping
+            if (cart.GetSubtotal() > 0)
+            {
+                Table priceTable = new Table();
+                Console.WriteLine(priceTable.CreateTableString("# Prices", cart.GetCartPriceInTableFormat(), 3));
                 Console.WriteLine("");
             }
 
@@ -112,16 +120,6 @@ class Program
             {
                 cart.AddProduct(selectedProduct, quantity);
             }
-
-            // Display the cart on the screen
-
-            // Calculate the amount saved from discounts (buy on red flower, get one half off)
-
-            // Calculate shipping cost
-
-            // Calculate total
-
-            // Display total
 
             Console.ReadKey();
             Console.Clear();
